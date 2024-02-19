@@ -10,7 +10,7 @@
         $hostname = "localhost";
         $username = "root";
         $password = "";
-        $dbName = "bookStore";
+        $dbName = "books";
         $conn = mysqli_connect($hostname, $username, $password);
         if(!$conn)
             die("Fail to connect");
@@ -36,16 +36,10 @@
         {
             echo '<tr align="center" bgcolor="">';
             echo '<td>'.$row.'</td>';
-            echo '<td><a
-
-            href="bookDetail1_edit.php?bookId='.$rs[0].'">'.$rs[0].'</a></td>';
+            echo '<td><a href="bookDetail1.php?bookId='.$rs[0].'">'.$rs[0].'</a></td>';
             echo '<td align="left">'.$rs[1].'</td>';
-            echo '<td><a href="bookUpdate1.php?bookId='.$rs[0].'">[แก้ไข]
-
-            </a></td>';
-
-            echo '<td><a href="bookDelete1.php?bookId='.$rs[0].'"
-            onclick="return confirm(\' ยืนยันการลบข้อมูลหนังสือ '.$rs[1].'\')">[ลบ]</a></td>';
+            echo '<td><a href="bookUpdate1.php?bookId='.$rs[0].'">[แก้ไข]</a></td>';
+            echo '<td><a href="bookDelete1.php?bookId='.$rs[0].'"onclick="return confirm(\' ยืนยันการลบข้อมูลหนังสือ '.$rs[1].'\')">[ลบ]</a></td>';
             echo '</tr>';
             $row++;
         }

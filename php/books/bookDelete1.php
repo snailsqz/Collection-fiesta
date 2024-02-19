@@ -11,7 +11,7 @@
     $hostname = "localhost";
     $username = "root";
     $password = "";
-    $dbName = "bookStore";
+    $dbName = "books";
     $conn = mysqli_connect($hostname, $username, $password);
     if (!$conn)
         die("ไม่สามารถติดต่อกับ mySQL ได้");

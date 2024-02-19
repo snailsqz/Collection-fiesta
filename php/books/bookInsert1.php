@@ -30,18 +30,18 @@
        echo '<option value="">เลือกสถานะ</option>';
        while($result=mysqli_fetch_object($dbQuery))
        {
-           echo '<option value='.$result->StatusId.'>'.$result->StatusName.'</option>';
+           echo '<option value='.$result->StatusID.'>'.$result->StatusName.'</option>';
        }
     }
     
     $hostname = "localhost";
     $username = "root";
     $password = "";
-    $dbName = "bookStore";
+    $dbName = "books";
     $conn = mysqli_connect($hostname, $username, $password);
     if (!$conn)
         die("ไม่สามารถติดต่อกับ mySQL ได้");
-    mysqli_select_db($conn, $dbName) or die("ไม่สามารถเลือกฐานข้อมูล bookStore ได้");
+    mysqli_select_db($conn, $dbName) or die("ไม่สามารถเลือกฐานข้อมูล books ได้");
     mysqli_query($conn, "set character_set_connection=utf8mb4");
     mysqli_query($conn, "set character_set_client=utf8mb4");
     mysqli_query($conn, "set character_set_results=utf8mb4");
