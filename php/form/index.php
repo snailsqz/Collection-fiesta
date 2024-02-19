@@ -10,6 +10,9 @@
 <body>
     <div class="mainbox">
         <h1>Student Form</h1>
+        <p>Customer ID :
+            <input type="text" name="customerid" id="" placeholder="">
+        </p>
         <p>First Name :
             <input type="text" name="fname" id="" placeholder="First Name">
         </p>

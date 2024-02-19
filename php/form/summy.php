@@ -4,18 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style1.css">
 </head>
 <body>
     <?php
+    $id = $_GET['customerid'];
     $fname = $_GET['fname'];
-    $lname = $_GET['lname'];
+    $lname =$_GET['lname'];
     $email = $_GET['email'];
     $tel = $_GET['tel'];
     $age = $_GET['age'];
     $address = $_GET['address'];
     $gender = $_GET['gender'];
     $age = date_diff(date_create($age), date_create('today'))->y;
+    $major = $_GET['major'];
+
 
     if (empty($_GET["major"])) {
         echo "<script>alert('Please put your major');history.back()</script>";
@@ -40,7 +43,26 @@
             exit();
         } 
         else {
+            $hostname = "localhost";
+            $username = "root";
+            $password = "";
+            $dbName = "customertest";
+            $conn = mysqli_connect($hostname, $username, $password);
+            echo '<center>';
+            if (!$conn)
+                die("ไม่สามารถติดต่อกับ mySQL ได้");
+            mysqli_select_db($conn, $dbName) or die("ไม่สามารถเลือกฐานข้อมูล customertest ได้");
+            mysqli_query($conn,"set character_set_connection=utf8mb4");
+            mysqli_query($conn,"set character_set_client=utf8mb4");
+            mysqli_query($conn,"set character_set_results=utf8mb4");
+
+            $sql = "insert into customer(customerID,firstname, lastname, email, telephone, age, address, gender,
+            major) values ('$id','$fname', '$lname', '$email', '$tel', '$age','$address', '$gender', '$major')";
+            mysqli_query($conn, $sql) or die("insert ลงตาราง book มีข้อผิดพลาดเกิดขึ้น" .mysqli_error());
+            echo '<h2>บันทึกข้อมูลหนังสือรหัส '.$id.' เรียบร้อย</h2>';
+            mysqli_close($conn);
             echo "<table>";
+            echo "<tr><td><p>ID</p></td><td><p>⠀$id</p></td></tr>";
             echo "<tr><td><p>First Name</p></td><td><p>⠀$fname</p></td></tr>";
             echo "<tr><td><p>Last Name</p></td><td><p>⠀$lname</p></td></tr>";
             echo "<tr><td><p>Email</p></td><td><p>⠀$email</p></td></tr>";
@@ -53,6 +75,8 @@
         }
     }
     ?>
+    <br>
+    <br>
     <a href="index.php" class="button">Home</a>
 </body>
 </html>
